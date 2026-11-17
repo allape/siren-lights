@@ -9,6 +9,8 @@ SCSS modules + i18next**, and bundled into a **single HTML file** for easy hosti
   `@media (min-aspect-ratio: 1/1)` query puts them side by side in landscape and
   stacks them in portrait; no JavaScript measures the viewport.
 - **Configurable colours** – pick any red and blue with the native colour picker.
+- **Colour presets** – each lamp also offers white, a pure primary and GB / US / EU
+  approximations with one tap.
 - **Built for night use** – lamps are flat, edge-to-edge fields of the configured colour
   with no gradients, vignette or dark borders; switching is instant for maximum
   attention, and the panel reminds you to use maximum screen brightness.
@@ -51,6 +53,17 @@ SCSS modules + i18next**, and bundled into a **single HTML file** for easy hosti
 
 The profiles are timing presets inspired by those standards and are not a
 certification of any real emergency-light product.
+
+## Colour presets
+
+| Lamp | Presets                                                                            |
+| ---- | ---------------------------------------------------------------------------------- |
+| Red  | White `#FFFFFF` · Pure red `#FF0000` · GB `#FF1F2D` · US `#FF2A00` · EU `#E60012`  |
+| Blue | White `#FFFFFF` · Pure blue `#0000FF` · GB `#1F6BFF` · US `#0033FF` · EU `#0057B8` |
+
+The standards define the emitted light colour by chromaticity rather than by a fixed
+screen RGB value, so the GB / US / EU entries are vivid sRGB approximations for display
+use, not certified colour samples.
 
 ## Layout rules
 

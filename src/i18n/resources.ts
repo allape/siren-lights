@@ -7,9 +7,27 @@ export const resources = {
         red: "红灯",
         blue: "蓝灯",
         standard: "闪烁规范",
+        redPresets: "红灯预设颜色",
+        bluePresets: "蓝灯预设颜色",
         start: "开始闪烁",
         note: "轻触屏幕可显示停止按钮",
         nightHint: "夜间使用建议将屏幕亮度调至最高",
+      },
+      presets: {
+        white: "纯白",
+        approx: "屏幕近似色",
+        red: {
+          pure: "纯红",
+          gb: "国标红",
+          us: "美标红",
+          eu: "欧标红",
+        },
+        blue: {
+          pure: "纯蓝",
+          gb: "国标蓝",
+          us: "美标蓝",
+          eu: "欧标蓝",
+        },
       },
       standards: {
         gb: {
@@ -36,26 +54,44 @@ export const resources = {
     translation: {
       config: {
         title: "Siren settings",
-        subtitle: "Choose the light colours and flash pattern",
+        subtitle: "Colours and flash pattern",
         red: "Red light",
         blue: "Blue light",
         standard: "Flash standard",
+        redPresets: "Red light presets",
+        bluePresets: "Blue light presets",
         start: "Start flashing",
         note: "Tap the screen to reveal the stop button.",
         nightHint: "For night use, set the screen to maximum brightness",
       },
+      presets: {
+        white: "White",
+        approx: "screen approximation",
+        red: {
+          pure: "Red",
+          gb: "GB red",
+          us: "US red",
+          eu: "EU red",
+        },
+        blue: {
+          pure: "Blue",
+          gb: "GB blue",
+          us: "US blue",
+          eu: "EU blue",
+        },
+      },
       standards: {
         gb: {
           name: "Chinese · GB",
-          detail: "GB 13954 · alternating single flash, about 2 per second",
+          detail: "GB 13954 · single flash at 2 Hz",
         },
         us: {
           name: "American · SAE",
-          detail: "SAE J845 · alternating double flash, about 1 burst per second",
+          detail: "SAE J845 · double flash at 1 Hz",
         },
         eu: {
           name: "European · ECE",
-          detail: "ECE R65 · alternating single flash, about 2.5 per second",
+          detail: "ECE R65 · single flash at 2.5 Hz",
         },
       },
       stop: "Stop",

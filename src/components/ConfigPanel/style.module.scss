@@ -155,6 +155,7 @@
 .colorLabel {
   font-size: 13px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .colorValue {
@@ -162,6 +163,56 @@
   font-size: 11px;
   letter-spacing: 0.02em;
   color: var(--panel-muted);
+}
+
+.presets {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.presetChip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: 24px;
+  padding: 3px 4px;
+  border: 1px solid var(--panel-line);
+  border-radius: 999px;
+  background: var(--panel-field);
+  color: var(--panel-text);
+  font-size: 10px;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background 120ms ease,
+    border-color 120ms ease;
+}
+
+.presetChip:hover {
+  background: var(--panel-field-strong);
+}
+
+.presetChip:focus-visible {
+  outline: 2px solid var(--panel-text);
+  outline-offset: 2px;
+}
+
+.presetChipActive {
+  border-color: color-mix(in srgb, var(--preset-color) 60%, var(--panel-text));
+  background: color-mix(in srgb, var(--preset-color) 14%, var(--panel-field));
+}
+
+.presetSwatch {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--preset-color);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.28);
 }
 
 .standards {
@@ -342,18 +393,36 @@
 }
 
 /* Keep the panel vertically centred on short laptop / phone viewports. */
-@media (max-height: 680px) {
+@media (max-height: 720px) {
   .panel {
-    padding: clamp(16px, 3.5vw, 22px);
+    padding: clamp(16px, 3vw, 20px);
     border-radius: 22px;
   }
 
   .colors {
-    margin-top: 16px;
+    margin-top: 14px;
+  }
+
+  .colorField {
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .colorInput {
+    width: 38px;
+    height: 38px;
+  }
+
+  .colorLabel {
+    font-size: 12px;
+  }
+
+  .presets {
+    margin-top: 8px;
   }
 
   .standards {
-    margin-top: 16px;
+    margin-top: 14px;
   }
 
   .legend {
@@ -361,20 +430,20 @@
   }
 
   .standardList {
-    gap: 6px;
+    gap: 5px;
   }
 
   .standard {
-    padding: 10px 12px;
+    padding: 9px 12px;
   }
 
   .startButton {
-    margin-top: 16px;
+    margin-top: 14px;
     padding: 13px 16px;
   }
 
   .note {
-    margin-top: 10px;
+    margin-top: 8px;
   }
 
   .hint {

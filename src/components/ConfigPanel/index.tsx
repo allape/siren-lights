@@ -1,8 +1,14 @@
 import type { CSSProperties } from "react";
 import { useTranslation } from "react-i18next";
+import { BLUE_PRESETS, RED_PRESETS } from "../../lib/colorPresets";
 import type { SirenConfig } from "../../lib/config";
 import { STANDARD_IDS } from "../../lib/standards";
 import styles from "./style.module.scss";
+
+const PRESETS = {
+  red: RED_PRESETS,
+  blue: BLUE_PRESETS,
+} as const;
 
 interface ConfigPanelProps {
   config: SirenConfig;
@@ -49,6 +55,10 @@ export function ConfigPanel({
     "--blue-color": config.blue,
   } as CSSProperties;
 
+  const applyPreset = (lamp: "red" | "blue", hex: string) => {
+    onChange(lamp === "red" ? { ...config, red: hex } : { ...config, blue: hex });
+  };
+
   return (
     <div className={styles.overlay}>
       <section
@@ -76,19 +86,46 @@ export function ConfigPanel({
         </header>
 
         <div className={styles.colors}>
-          <ColorField
-            id="siren-red"
-            label={t("config.red")}
-            value={config.red}
-            onChange={(value) => onChange({ ...config, red: value })}
-          />
-          <ColorField
-            id="siren-blue"
-            label={t("config.blue")}
-            value={config.blue}
-            onChange={(value) => onChange({ ...config, blue: value })}
-          />
+          {(["red", "blue"] as const).map((lamp) => (
+            <div className={styles.color}>
+              <ColorField
+                id={`siren-${lamp}`}
+                label={t(`config.${lamp}`)}
+                value={config[lamp]}
+                onChange={(value) => onChange({ ...config, [lamp]: value })}
+              />
+              <div className={styles.presets}>
+                {PRESETS[lamp].map((preset) => {
+                  const active = config[lamp].toLowerCase() === preset.hex;
+                  const label =
+                    preset.id === "white"
+                      ? t("presets.white")
+                      : t(`presets.${lamp}.${preset.id}`);
+                  const isStandard =
+                    preset.id === "gb" || preset.id === "us" || preset.id === "eu";
+                  const tooltip = `${label} ${preset.hex.toUpperCase()}${isStandard ? ` · ${t("presets.approx")}` : ""
+                    }`;
+
+                  return (
+                    <button
+                      key={preset.id}
+                      type="button"
+                      className={`${styles.presetChip} ${active ? styles.presetChipActive : ""}`}
+                      style={{ "--preset-color": preset.hex } as CSSProperties}
+                      aria-pressed={active}
+                      title={tooltip}
+                      onClick={() => applyPreset(lamp, preset.hex)}
+                    >
+                      <span className={styles.presetSwatch} aria-hidden="true" />
+                      {label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
         </div>
+
 
         <fieldset className={styles.standards}>
           <legend className={styles.legend}>{t("config.standard")}</legend>
