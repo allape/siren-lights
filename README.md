@@ -1,6 +1,6 @@
 # siren-lights
 
-A full-screen red / blue warning-light page built with **Vite + React + TypeScript +
+A full-viewport red / blue warning-light page built with **Vite + React + TypeScript +
 SCSS modules + i18next**, and bundled into a **single HTML file** for easy hosting.
 
 ## Features
@@ -9,21 +9,37 @@ SCSS modules + i18next**, and bundled into a **single HTML file** for easy hosti
   `@media (min-aspect-ratio: 1/1)` query puts them side by side in landscape and
   stacks them in portrait; no JavaScript measures the viewport.
 - **Configurable colours** – pick any red and blue with the native colour picker.
+- **Built for night use** – lamps are flat, edge-to-edge fields of the configured colour
+  with no gradients, vignette or dark borders; switching is instant for maximum
+  attention, and the panel reminds you to use maximum screen brightness.
 - **Flash profiles** – Chinese (GB), American (SAE) and European (ECE) timing presets.
   The Chinese profile is selected by default.
 - **First-visit confirmation** – a vertically and horizontally centred panel asks for
   colours and profile the first time. The lamps stay steadily lit and update live while
   the panel is open.
-- **Immersive mode** – "Start" hides the panel, requests fullscreen (when available),
-  starts flashing and takes a screen wake lock. Tapping the screen reveals a stop button
-  (80 % opaque black or white, depending on `prefers-color-scheme`, with a backdrop
-  blur); it hides again after 4 s without interaction. "Stop" stops the flash, exits
-  fullscreen and returns to the panel.
+- **Running mode** – "Start" hides the panel, starts flashing and takes a screen wake
+  lock. Tapping the screen reveals a stop button (80 % opaque black or white, depending
+  on `prefers-color-scheme`, with a backdrop blur); it hides again after 3 s without
+  interaction. "Stop" stops the flash and returns to the panel.
 - **Bilingual UI** – Chinese and English, auto-detected on first load and switchable in
   the panel.
-- **Wake Lock** – re-acquired automatically when the tab becomes visible again, and
-  gracefully skipped on browsers that do not support it.
+- **Wake Lock** – re-acquired when the tab becomes visible again and retried on
+  interaction, so a lock that needed a gesture can still be obtained; gracefully
+  skipped on browsers that do not support it.
 - **Single-file build** – `npm run build` emits one self-contained `dist/index.html`.
+
+## Visibility on a phone or tablet
+
+- The whole viewport is used: two solid colour fields, no borders and no gradient
+  falloff, so the light stays recognisable at a distance and in peripheral vision.
+- Lamps switch instantly (no CSS opacity transition), which keeps the strobe crisp
+  instead of smearing the two colours together.
+- The Screen Wake Lock keeps the device from dimming while flashing. It is re-acquired
+  after the page is hidden and retried on touch / click.
+- For night use, set the device to maximum brightness and avoid low-power mode, which
+  can force the display dimmer. The settings panel shows the same reminder.
+- The page is a single HTML file and works offline; no network requests are made while
+  flashing.
 
 ## Flash profiles
 
@@ -77,7 +93,7 @@ npm run format    # prettier
 
 ## Browser notes
 
-- Fullscreen and the Screen Wake Lock API require a secure context (HTTPS or
-  `localhost`) and may still be refused, for example on iOS Safari. Both features fail
-  silently and the app keeps working.
+- The Screen Wake Lock API requires a secure context (HTTPS or `localhost`) and may
+  still be refused. It fails silently and flashing continues.
 - The stop button and the settings panel follow `prefers-color-scheme`.
+- Fullscreen is intentionally not requested; the page simply fills the viewport.

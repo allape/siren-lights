@@ -4,8 +4,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: #05060a;
-  filter: blur(20px);
+  background: #000;
 }
 
 .lamp {
@@ -15,14 +14,6 @@
   height: 50%;
   overflow: hidden;
   background-color: var(--lamp-color);
-  background-image: radial-gradient(
-    circle at 50% 50%,
-    color-mix(in srgb, var(--lamp-color) 58%, #fff) 0%,
-    var(--lamp-color) 24%,
-    color-mix(in srgb, var(--lamp-color) 52%, #000) 68%,
-    #05060a 100%
-  );
-  transition: filter 90ms ease-out;
 }
 
 .red {
@@ -33,44 +24,25 @@
   --lamp-color: var(--blue-color);
 }
 
-/* Lens ribs, kept subtle so the light still reads as a solid colour. */
-.lamp::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background-image: repeating-linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.05) 0,
-    rgba(255, 255, 255, 0.05) 1px,
-    transparent 1px,
-    transparent 9px
-  );
-  mix-blend-mode: overlay;
-  pointer-events: none;
-}
-
-/* Dark overlay that makes the lamp look unlit; fades out while flashing. */
+/*
+ * Solid "lens off" layer. It is deliberately flat and edge-to-edge: no
+ * gradients, vignette or shadows, so a lit lamp is a uniform field of colour
+ * that stays visible from a distance and in peripheral vision.
+ */
 .lamp::after {
   content: "";
   position: absolute;
   inset: 0;
   background-color: #05060a;
-  background-image: radial-gradient(
-    circle at 50% 50%,
-    color-mix(in srgb, var(--lamp-color) 18%, #05060a) 0%,
-    #05060a 78%
-  );
+  background-color: color-mix(in srgb, var(--lamp-color) 6%, #05060a);
   opacity: 1;
-  transition: opacity 60ms linear;
-  pointer-events: none;
 }
 
 .on::after {
   opacity: 0;
 }
 
-/* Landscape (width >= height): side-by-side halves. */
+/* Landscape or square (width >= height): side-by-side halves. */
 @media (min-aspect-ratio: 1/1) {
   .stage {
     flex-direction: row;
@@ -79,15 +51,5 @@
   .lamp {
     width: 50%;
     height: 100%;
-  }
-
-  .lamp::before {
-    background-image: repeating-linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.05) 0,
-      rgba(255, 255, 255, 0.05) 1px,
-      transparent 1px,
-      transparent 9px
-    );
   }
 }

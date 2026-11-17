@@ -13,7 +13,6 @@ import {
   type Language,
   type SirenConfig,
 } from "./lib/config";
-import { enterFullscreen, exitFullscreen } from "./lib/fullscreen";
 import { STANDARDS } from "./lib/standards";
 import styles from "./style.module.scss";
 
@@ -70,7 +69,6 @@ export default function App() {
     saveConfig(config);
     clearHideTimer();
     setStopVisible(false);
-    void enterFullscreen(document.documentElement);
     setPhase("running");
   };
 
@@ -78,7 +76,6 @@ export default function App() {
     clearHideTimer();
     setStopVisible(false);
     setPhase("config");
-    void exitFullscreen();
   };
 
   const handleToggleLanguage = () => {
@@ -93,6 +90,7 @@ export default function App() {
       className={styles.app}
       onPointerDown={handleSurfacePointerDown}
       onPointerMove={handleSurfacePointerMove}
+      onContextMenu={(event) => event.preventDefault()}
     >
       <SirenStage
         red={config.red}

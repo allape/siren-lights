@@ -8,7 +8,8 @@ export const resources = {
         blue: "蓝灯",
         standard: "闪烁规范",
         start: "开始闪烁",
-        note: "开始后将自动进入全屏；轻触屏幕可显示停止按钮",
+        note: "轻触屏幕可显示停止按钮",
+        nightHint: "夜间使用建议将屏幕亮度调至最高",
       },
       standards: {
         gb: {
@@ -40,7 +41,8 @@ export const resources = {
         blue: "Blue light",
         standard: "Flash standard",
         start: "Start flashing",
-        note: "Fullscreen starts automatically. Tap the screen to reveal the stop button.",
+        note: "Tap the screen to reveal the stop button.",
+        nightHint: "For night use, set the screen to maximum brightness",
       },
       standards: {
         gb: {

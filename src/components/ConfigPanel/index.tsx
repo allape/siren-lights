@@ -128,6 +128,7 @@ export function ConfigPanel({
           {t("config.start")}
         </button>
         <p className={styles.note}>{t("config.note")}</p>
+        <p className={styles.hint}>{t("config.nightHint")}</p>
       </section>
     </div>
   );

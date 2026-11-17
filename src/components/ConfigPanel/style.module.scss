@@ -290,6 +290,7 @@
   transition:
     filter 150ms ease,
     transform 150ms ease;
+  text-shadow: 0 0px 4px black;
 }
 
 .startButton:hover {
@@ -313,6 +314,15 @@
   color: var(--panel-muted);
 }
 
+.hint {
+  margin: 4px 0 0;
+  font-size: 11px;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--panel-muted);
+  opacity: 0.85;
+}
+
 @media (prefers-color-scheme: light) {
   .panel {
     --panel-text: #101118;
@@ -328,6 +338,47 @@
 
   .standardChecked .standardIndicator::after {
     background: #fff;
+  }
+}
+
+/* Keep the panel vertically centred on short laptop / phone viewports. */
+@media (max-height: 680px) {
+  .panel {
+    padding: clamp(16px, 3.5vw, 22px);
+    border-radius: 22px;
+  }
+
+  .colors {
+    margin-top: 16px;
+  }
+
+  .standards {
+    margin-top: 16px;
+  }
+
+  .legend {
+    margin-bottom: 8px;
+  }
+
+  .standardList {
+    gap: 6px;
+  }
+
+  .standard {
+    padding: 10px 12px;
+  }
+
+  .startButton {
+    margin-top: 16px;
+    padding: 13px 16px;
+  }
+
+  .note {
+    margin-top: 10px;
+  }
+
+  .hint {
+    margin-top: 2px;
   }
 }
 
