@@ -87,14 +87,20 @@ export function ConfigPanel({
 
         <div className={styles.colors}>
           {(["red", "blue"] as const).map((lamp) => (
-            <div className={styles.color}>
+            <div className={styles.color} key={lamp}>
               <ColorField
                 id={`siren-${lamp}`}
                 label={t(`config.${lamp}`)}
                 value={config[lamp]}
                 onChange={(value) => onChange({ ...config, [lamp]: value })}
               />
-              <div className={styles.presets}>
+              <div
+                className={styles.presets}
+                role="group"
+                aria-label={t(
+                  lamp === "red" ? "config.redPresets" : "config.bluePresets",
+                )}
+              >
                 {PRESETS[lamp].map((preset) => {
                   const active = config[lamp].toLowerCase() === preset.hex;
                   const label =
@@ -103,8 +109,9 @@ export function ConfigPanel({
                       : t(`presets.${lamp}.${preset.id}`);
                   const isStandard =
                     preset.id === "gb" || preset.id === "us" || preset.id === "eu";
-                  const tooltip = `${label} ${preset.hex.toUpperCase()}${isStandard ? ` · ${t("presets.approx")}` : ""
-                    }`;
+                  const tooltip = `${label} ${preset.hex.toUpperCase()}${
+                    isStandard ? ` · ${t("presets.approx")}` : ""
+                  }`;
 
                   return (
                     <button
@@ -125,7 +132,6 @@ export function ConfigPanel({
             </div>
           ))}
         </div>
-
 
         <fieldset className={styles.standards}>
           <legend className={styles.legend}>{t("config.standard")}</legend>

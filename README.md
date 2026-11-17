@@ -28,7 +28,7 @@ SCSS modules + i18next**, and bundled into a **single HTML file** for easy hosti
 - **Wake Lock** – re-acquired when the tab becomes visible again and retried on
   interaction, so a lock that needed a gesture can still be obtained; gracefully
   skipped on browsers that do not support it.
-- **Single-file build** – `npm run build` emits one self-contained `dist/index.html`.
+- **Single-file build** – `npm run build` emits one self-contained `docs/index.html`.
 
 ## Visibility on a phone or tablet
 
@@ -98,11 +98,27 @@ confirmation panel is shown.
 ```bash
 npm install       # install dependencies
 npm run dev       # dev server
-npm run build     # type-check + single-file production build
-npm run preview   # preview dist/
+npm run build     # type-check + build into docs/
+npm run preview   # preview the docs/ build
 npm run lint      # eslint.config.js
 npm run format    # prettier
 ```
+
+## GitHub Pages
+
+`npm run build` writes the self-contained site to `docs/`:
+
+- `docs/index.html` – the complete app (JS, CSS and icon inlined)
+- `docs/.nojekyll` – tells GitHub Pages to skip Jekyll processing; copied from
+  `public/.nojekyll` on every build
+
+Commit the `docs/` folder, then open **Settings → Pages** in the repository and choose
+**Deploy from a branch**, branch `main`, folder `/docs`. The app is served at
+`https://allape.github.io/siren-lights/`; the relative `base` path makes the repository
+sub-path work.
+
+Because the app is one relative HTML file with no external requests, it also works when
+opened directly from disk or hosted under any static path.
 
 ## Browser notes
 

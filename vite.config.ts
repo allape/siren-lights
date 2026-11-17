@@ -6,6 +6,8 @@ export default defineConfig({
   base: "./",
   plugins: [react(), viteSingleFile()],
   build: {
+    outDir: "docs",
+    emptyOutDir: true,
     target: "es2022",
     cssCodeSplit: false,
     assetsInlineLimit: 100_000_000,
