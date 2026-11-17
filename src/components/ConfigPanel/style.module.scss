@@ -36,13 +36,56 @@
 
 .header {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
 }
 
 .heading {
+  flex: 1 1 120px;
   min-width: 0;
+}
+
+/* Wraps under the heading on narrow phones instead of squeezing the title. */
+.headerActions {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.installButton {
+  flex: none;
+  padding: 7px 12px;
+  border: 1px solid color-mix(in srgb, var(--red-color) 45%, var(--panel-line));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--red-color) 16%, var(--panel-field));
+  color: var(--panel-text);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background 150ms ease,
+    border-color 150ms ease;
+}
+
+.installButton:hover {
+  background: color-mix(in srgb, var(--red-color) 26%, var(--panel-field));
+}
+
+.installButton:focus-visible {
+  outline: 2px solid var(--panel-text);
+  outline-offset: 2px;
+}
+
+.installHint {
+  margin: 12px 0 0;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--panel-muted);
 }
 
 .title {

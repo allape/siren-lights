@@ -1,7 +1,9 @@
 import type { CSSProperties } from "react";
 import { useTranslation } from "react-i18next";
+import { useInstallPrompt } from "../../hooks/useInstallPrompt";
 import { BLUE_PRESETS, RED_PRESETS } from "../../lib/colorPresets";
 import type { SirenConfig } from "../../lib/config";
+import { promptInstall } from "../../lib/pwa";
 import { STANDARD_IDS } from "../../lib/standards";
 import styles from "./style.module.scss";
 
@@ -49,6 +51,7 @@ export function ConfigPanel({
   onToggleLanguage,
 }: ConfigPanelProps) {
   const { t } = useTranslation();
+  const installState = useInstallPrompt();
 
   const panelStyle = {
     "--red-color": config.red,
@@ -75,15 +78,30 @@ export function ConfigPanel({
             </h1>
             <p className={styles.subtitle}>{t("config.subtitle")}</p>
           </div>
-          <button
-            type="button"
-            className={styles.languageButton}
-            onClick={onToggleLanguage}
-            aria-label={t("language.aria")}
-          >
-            {t("language.switch")}
-          </button>
+          <div className={styles.headerActions}>
+            {installState === "installable" && (
+              <button
+                type="button"
+                className={styles.installButton}
+                onClick={() => void promptInstall()}
+              >
+                {t("pwa.install")}
+              </button>
+            )}
+            <button
+              type="button"
+              className={styles.languageButton}
+              onClick={onToggleLanguage}
+              aria-label={t("language.aria")}
+            >
+              {t("language.switch")}
+            </button>
+          </div>
         </header>
+
+        {installState === "ios-hint" && (
+          <p className={styles.installHint}>{t("pwa.iosHint")}</p>
+        )}
 
         <div className={styles.colors}>
           {(["red", "blue"] as const).map((lamp) => (

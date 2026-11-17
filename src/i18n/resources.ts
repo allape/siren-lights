@@ -48,6 +48,10 @@ export const resources = {
         switch: "English",
         aria: "切换语言",
       },
+      pwa: {
+        install: "安装到桌面",
+        iosHint: "在分享菜单中选择“添加到主屏幕”，即可像应用一样全屏使用。",
+      },
     },
   },
   en: {
@@ -98,6 +102,11 @@ export const resources = {
       language: {
         switch: "中文",
         aria: "Switch language",
+      },
+      pwa: {
+        install: "Install app",
+        iosHint:
+          "Choose “Add to Home Screen” from the share menu to use it full screen, like an app.",
       },
     },
   },

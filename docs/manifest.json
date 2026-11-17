@@ -1,0 +1,36 @@
+{
+  "id": "./",
+  "name": "Siren Lights · 警灯闪烁",
+  "short_name": "警灯闪烁",
+  "description": "红蓝警灯闪烁，可选国标 / 美标 / 欧标闪烁节奏。Red and blue siren lights with GB, SAE and ECE flash patterns.",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#05060a",
+  "theme_color": "#05060a",
+  "categories": ["utilities"],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
